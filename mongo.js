@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator')
 
 
 if (process.argv.length < 3) {
@@ -19,7 +19,7 @@ const personSchema = new mongoose.Schema({
   number:{ type: Number, minlength: 8, unique: true },
 })
 
-personSchema.plugin(uniqueValidator);
+personSchema.plugin(uniqueValidator)
 
 const Person = mongoose.model('Person', personSchema)
 
@@ -28,15 +28,15 @@ const person = new Person({
   number: process.argv[4],
 })
 
-person.save().then(result => {
+person.save().then(() => {
   console.log('person saved!')
   mongoose.connection.close()
 })
 
 
 Person.find({}).then(result => {
-    result.forEach(person => {
-      console.log(person)
-    })
-    mongoose.connection.close()
+  result.forEach(person => {
+    console.log(person)
   })
+  mongoose.connection.close()
+})
